@@ -1,0 +1,27 @@
+<title>Documents</title>
+<section class="container" style="margin-top: 20px">
+  <div class="container main-body-content">
+    <table class="table" id="allTasks">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Download</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+        <%@documents.each do |document|%>
+            <tr>
+              <td><%= document.title %></td>
+              <td><%=link_to "Download", document_path(document)%></td>
+              <td><%= link_to "Delete", document_path(document), :method => "delete" %></td>
+            </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+
+
+  <%= button_to :"Upload new document", '/add_document' , :method => "get", :class => "btn btn-primary float-right" %>
+
+</section>

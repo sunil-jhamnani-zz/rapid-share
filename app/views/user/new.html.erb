@@ -1,0 +1,32 @@
+<div class="signup">
+  <div class="container">
+    <h1>Sign Up</h1>
+    <%=form_for @user, :id => "signup_form", :url => create_user_path, :method => "post" do %>
+        <div class="form-group">
+          <%= email_field "user", "email", "placeholder" => "Email", "class" => "form-control col-md-6" %>
+        </div>
+        <div class="form-group">
+          <%= password_field "user", "password", "placeholder" => "Password", "class" => "form-control col-md-6" %>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control col-md-6" id="confirm_password" placeholder="Confirm_password" onblur="enable_submit()" onfocus="disable_submit()">
+        </div>
+        <%= submit_tag "Sign Up".to_sym, :id => "btn_signup", :disabled => true, :class => "btn btn-primary" %>
+        <script>
+            function disable_submit() {
+                document.getElementById("btn_signup").disabled = true;
+            }
+
+            function enable_submit() {
+                if (document.getElementById("confirm_password").value == document.getElementById("user_password").value) {
+                    document.getElementById("btn_signup").disabled = false;
+                }
+                else {
+
+                }
+            }
+
+        </script>
+    <% end -%>
+  </div>
+</div>

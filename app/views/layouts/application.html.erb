@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RapidShare</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<header>
+  <div class="page-header">
+    <h1>Rapid Share</h1>
+  </div>
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <div class="navbar-collapse" id="navbarSupportedContent">
+      <div class="container">
+        <ul class="list-inline navbar-nav" style="position: absolute;">
+          <li class="nav-item active">
+            <%= link_to "Home", root_url, :method => "get", :class => "nav-link" %>
+          </li>
+        </ul>
+        <div class="container">
+          <% if current_user %>
+              <%= link_to "Log out", logout_path, :method => "delete", :class => "nav-link", :style => "float: right" %>
+          <% else %>
+              <%= link_to "Sign up", signup_path, :method => "get", :class => "nav-link", :style => "float: right" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<%= yield %>
+<div class="container" id="messages" style="margin-top: 20px">
+  <% if flash.now[:error] %>
+      <div class="alert alert-danger" role="alert" style="display: none">
+        <%= flash[:error] %>
+      </div>
+      <script>
+          $(".alert-danger").fadeIn("slow");
+          setTimeout(function () {
+              $(".alert-danger").fadeOut("slow");
+          },0);
+
+      </script>
+  <% end %>
+  <% if flash.now[:notice] %>
+      <div class="alert alert-success" role="alert" style="display: none">
+        <%= flash[:notice] %>
+      </div>
+      <script>
+          $(".alert-success").fadeIn("slow");
+          setTimeout(function () {
+              $(".alert-success").fadeOut("slow");
+          },0);
+
+      </script>
+  <% end %>
+</div>
+</body>
+</html>

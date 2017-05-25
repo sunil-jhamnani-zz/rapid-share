@@ -1,0 +1,33 @@
+
+<div class="container">
+  <h1>Upload Document</h1>
+  <%if @document.errors%>
+      <div id = "errors">
+        <%@document.errors.full_messages.each do |error|%>
+            <p>
+              <%=error%>
+            </p>
+        <%end%>
+      </div>
+  <%end%>
+  <%= form_for @document, :multipart => true, :id => "upload_form", :url => document_create_path  do |f|  %>
+      <div class="form-group">
+        <label for="name">Document Title</label>
+        <%= f.text_field :title, :class => "form-control col-md-6" %>
+      </div>
+      <div class="input-group col-md-6 pl-0 pr-0">
+        <label class="input-group-btn" style="margin-bottom: 0;">
+                  <span class="btn btn-primary">
+                      Browse&hellip;<%= f.file_field  :doc, :class => "d-none"%>
+                  </span>
+        </label>
+        <input type="text" class="form-control" id="file_name" readonly >
+      </div>
+      <%= f.submit "Upload", :class => "btn btn-primary", :style => "margin-top: 20px;" %>
+  <% end %>
+  <script>
+    document.getElementById("document_doc").onchange = function () {
+        document.getElementById("file_name").value = this.value
+    }
+  </script>
+</div>
