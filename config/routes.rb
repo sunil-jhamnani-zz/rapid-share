@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get '/signup' => 'user#new', as: :signup
   post '/signup' => 'user#create', as: :create_user
 
-  get '/list' => 'document#list'
   get '/add_document' => 'document#new', as: :document_new
   post '/create_document' => 'document#create', as: :document_create
 
